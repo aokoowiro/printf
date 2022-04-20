@@ -1,4 +1,7 @@
-#rintf - prints formatted output.
+#include "main.h"
+
+/**
+#printf - prints formatted output.
   *@format: input.
   *
   *Return: number of chars printed or -1.
