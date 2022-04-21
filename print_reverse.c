@@ -8,17 +8,22 @@
 int print_r(va_list arg)
 {
 char *str = va_arg(arg, char *);
-int i = 0, counter = 0;
+int i = 0, count = 0;
 
 if (str == NULL)
-str = "(null)";
+{
+    str = "(null)";
+}
+  
 while (str[i])
-i++;
+{
+    i++;
+}
 i--;
 for (; i >= 0; i--)
 {
-_putchar(str[i]);
-counter++;
+    _putchar(str[i]);
+    count++;
 }
-return (counter);
+return (count);
 }
