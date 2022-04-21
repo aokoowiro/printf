@@ -1,41 +1,30 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_
+#define _MAIN_
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include <limits.h>
+#include <stdlib.h>
 
 /**
- * struct form - Types.
- * @c: Types in c.
- * @f: Corresponding function.
- * 
- **/
-typedef struct form
+ * struct convert - defines a structure for symbols and functions
+ *
+ * @sym: The operator.
+ * @f: the function associated.
+ */
+struct convert
 {
-char *c;
+char *sym;
 int (*f)(va_list);
-} type_printer;
+};
+typedef struct convert conver_t;
 
+int parser(const char *format, conver_t f_list[], va_list arg_list);
 int _printf(const char *format, ...);
-int _putchar(char c);
-int print_c(va_list arg);
-int print_x(va_list arg);
-int print_X(va_list arg);
-int print_i(va_list arg);
-void *conv_b(unsigned int nb);
-void *conv_o(char *tab);
-int print_o(va_list arg);
-int print_p(va_list arg);
-int print_r(va_list arg);
-int print_rot13(va_list arg);
-int print_s(va_list arg);
-int print_S(va_list arg);
-int print_u(va_list arg);
-int print_b(va_list arg);
-int print_x(va_list arg);
-int print_X(va_list arg);
-int print_o(va_list arg);
+void v_printf(const char *format, va_list args);
+void print_ch(const char *format, va_list args);
+int _putchar(char);
+int print_char(va_list);
+int print_string(va_list);
+int print_percent(va_list);
+
 #endif

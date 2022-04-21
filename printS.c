@@ -1,19 +1,51 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
+
 /**
- * print_S - Print a string.
- * @arg: String address.
- * Return: integer.
+ * parser - Receives the main string and all the
+ * necessary parameters to print a formatted string.
+ * @format: A string containing all the desired characters.
+ * @f_list: A list of all the possible functions.
+ * @arg_list:  A list containing all the arguments passed to the program.
+ * Return: Total count of the characters printed.
  */
-int print_S(va_list arg)
+int parser(const char *format, conver_t f_list[], va_list arg_list)
 {
-char *str = va_arg(arg, char *);
-int i = 0;
-if (str == NULL)
-str = "(null)";
-for (; str[i]; i++)
-_putchar(str[i]);
-return (i);
+int i, j, r_val, printed_chars;
+
+printed_chars = 0;
+for (i = 0; format[i] != '\0'; i++)
+{
+if (format[i] == '%')
+{
+for (j = 0; f_list[j].sym != NULL; j++)
+{
+if (format[i + 1] == f_list[j].sym[0])
+{
+r_val = f_list[j].f(arg_list);
+if (r_val == -1)
+return (-1);
+printed_chars += r_val;
+break;
+}
+}
+if (f_list[j].sym == NULL && format[i + 1] != ' ')
+{
+if (format[i + 1] != '\0')
+{
+_putchar(format[i]);
+_putchar(format[i + 1]);
+printed_chars = printed_chars + 2;
+}
+else
+return (-1);
+}
+i = i + 1;
+}
+else
+{
+_putchar(format[i]);
+printed_chars++;
+}
+}
+return (printed_chars);
 }

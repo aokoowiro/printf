@@ -1,86 +1,88 @@
 #include "main.h"
+#include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
 #include <stdlib.h>
-
 /**
- * printer - Uses the coresponding function to print.
- * @formati: Type of element to print.
- * Return: Function address.
- **/
-int (*printer(char formati))(va_list)
-{
-type_printer frm[] = {
-{'c', print_c},
-{'s', print_s},
-{'i', print_i},
-{'d', print_i},
-{'R', print_rot13},
-{'b', print_b},
-{'r', print_r},
-{'S', print_S},
-{'p', print_p},
-{'u', print_u},
-{'x', print_x},
-{'X', print_X},
-{'o', print_o},
-{'\0', NULL}
-};
-int i = 0;
+ * _printf - returns the number of characters printed.
+ * @format: input string.
+ *
+ * Return: number of chars printed.
+ */
 
-for (i = 0; frm[i].c; i++)
+void v_printf(const char *format, va_list args)
 {
-if (formati == frm[i].c)
+char ch;
+const char *s;
+int state = 0;
+
+while (*format)
+{
+if (state == 0)
+{
+if (*format == '%')
+{
+state = 1;
+}
+else 
+{
+_putchar(*format);
+}
+} else if (state == 1)
+{
+switch (*format)
+{
+case 'c':
+ch = va_arg(args, int);
+_putchar(ch);
+break;
+case 's':
+s = va_arg(args, const char *);
+while (*s)
+{
+_putchar(*s++);
+}
+break;
+case 'd':
+
+break;
+case 'x':
+
+break;
+case 'p':
+_putchar('0');
+_putchar('x');
 break;
 }
-return (frm[i].f);
+state = 0;
+}
+format++;
+}
 }
 /**
  * _printf - a function that produces output according to a format
  * @format: character string
- * 
+ * print_char - prints character
+ * print_string - prints string
+ * print_percent -print percentage
  * Return: 0 success
  */
 int _printf(const char *format, ...)
 {
-va_list arg;
-int i = 0, p_counter = 0;
-int (*f)(va_list);
+int printed_chars;
+conver_t f_list[] = {
+{"c", print_char},
+{"s", print_string},
+{"%", print_percent},
+{NULL, NULL},
+};
+va_list arg_list;
 
-if (!format || (format[0] == '%' && format[1] == '\0'))
+if (format == NULL)
 return (-1);
-va_start(arg, format);
-for (; format && format[i]; i++)
-{
-if (format[i] == '%')
-{
-if (format[i + 1] == '%')
-{
-_putchar(format[i]);
-i++;
-p_counter++;
-}
-else if (format[i + 1] == '\0')
-{
-_putchar(format[i]);
-p_counter++;
-return (p_counter);
-}
-else
-{
-f = printer(format[i + 1]);
-if (f != NULL)
-{
-p_counter += f(arg);
-i++;
-}
-else
-{
-_putchar(format[i]);
-p_counter++;}}}
-else
-{_putchar(format[i]);
-p_counter++;}}
-va_end(arg);
-return (p_counter);
+
+va_start(arg_list, format);
+
+printed_chars = parser(format, f_list, arg_list);
+va_end(arg_list);
+return (printed_chars);
 }
