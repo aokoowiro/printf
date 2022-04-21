@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 /**
- * print_f - prints output according to format.
  * printer - Uses the coresponding function to print.
  * @formati: Type of element to print.
  * Return: Function address.
@@ -83,4 +82,5 @@ else
 {_putchar(format[i]);
 p_counter++;}}
 va_end(arg);
-return (p_counter);}
+return (p_counter);
+}

@@ -1,10 +1,11 @@
-#ifndef _MAIN_
-#define _MAIN_
+#ifndef MAIN_H
+#define MAIN_H
 
-
-#include <stdarg.h>
-#include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include <limits.h>
 
 /**
  * struct form - Types.
@@ -14,13 +15,10 @@
  **/
 typedef struct form
 {
-  char *c;
-  int (*f)(va_list);
-} 
-type_printer;
+char *c;
+int (*f)(va_list);
+} type_printer;
 
-
-int (*printer(char formati))(va_list);
 int _printf(const char *format, ...);
 int _putchar(char c);
 int print_c(va_list arg);
@@ -37,4 +35,7 @@ int print_s(va_list arg);
 int print_S(va_list arg);
 int print_u(va_list arg);
 int print_b(va_list arg);
+int print_x(va_list arg);
+int print_X(va_list arg);
+int print_o(va_list arg);
 #endif

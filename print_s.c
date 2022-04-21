@@ -9,13 +9,20 @@
  */
 int print_s(va_list arg)
 {
-char *str = va_arg(arg, char *);
-int i = 0;
-
-if (str == NULL)
-str = "(null)";
-
-for (; str[i]; i++)
-_putchar(str[i]);
+    int i = 0;
+    char *s;
+  
+  s = va_arg(arg, char *);
+  
+  if (s == NULL)
+  {
+      s = "(null)";
+  }
+  
+  while (s[i] != '\0')
+  {
+    _putchar(s[i]);
+    i++;
+  }
 return (i);
 }

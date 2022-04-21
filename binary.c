@@ -1,10 +1,8 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
 
 /**
- * print_b - Print a number in binay.
+ * print_b - Print a number in binary.
  * @arg: Number to be converted to binary and printed.
  * Return: Number of bits printed.
  **/

@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
 
 /**
  * conv_b - Convert an unsigned integer to binary.
