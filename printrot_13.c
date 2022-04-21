@@ -8,30 +8,33 @@
  */
 int print_rot13(va_list arg)
 {
-int i, j, count = 0;
-char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+ char alph[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char rot13 = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+  int j, i = 0, count = 0, pl = 0;
+  
 char *s = va_arg(arg, char *);
 
 if (s == NULL)
-s = "(NULL)";
-for (i = 0; s[i]; i++)
 {
-for (j = 0; j < 52; j++)
-{
-if (s[i] == a[j])
-break;
+    s = "(null)";
 }
-if (s[i] == a[j])
+while (s[i] != '\0')
 {
-_putchar(b[j]);
-count++;
-}
-else
-{
-_putchar(s[i]);
-count++;
-}
+    pl = 0;
+    for (j = 0; alph[j] != '\0' && !pl; j++)
+    {
+      if (s[i] == alph[j])
+      {
+        _putchar(rot13[j]);
+         count++;
+         pl = 1;
+      }
+      if (!pl)
+      {
+        _putchar(s[i]);
+          count++;
+        }
+        i++
 }
 return (count);
 }
