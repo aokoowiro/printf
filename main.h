@@ -1,34 +1,28 @@
+#ifndef MAIN_H
+#define MAIN_H
 #include <stdarg.h>
-#include <stdlib.h>
-
 /**
- *struct directives - holds fromat specifiers and their functions.
- *@spec: char.
- *@fspec: function pointer.
- *
- */
-typedef struct directives
+ * struct form - Types.
+ * @c: Types in c.
+ * @f: Corresponding function.
+ **/
+typedef struct form
 {
-  char spec;
-  int (*fspec)(va_list, int);
-} forms;
-
-int _putchar(char c);
+  char c;
+  int (*f)(va_list);
+} type_printer;
 int _printf(const char *format, ...);
-int (*get_print_func(char c))(va_list, int);
-int print_ch(va_list, int);
-int print_str(va_list, int);
-int print_int(va_list, int);
-int _putchar_int(int, int);
-int print_numbers(unsigned long n, unsigned int base, const char *digits);
-unsigned int find_length(unsigned int, int);
-int print_hex(va_list args, int len);
-int print_heX(va_list args, int len);
-int print_unsignd(va_list args, int len);
-int print_octal(va_list args, int len);
-int print_rot13(va_list args, int len);
-int print_b(va_list args, int len);
-int print_binary(unsigned int, int);
-int print_Str(va_list args, int len);
-
+int print_s(va_list arg);
+int print_c(va_list arg);
+int print_i(va_list arg);
+int _putchar(char c);
+int print_rot13(va_list arg);
+int print_b(va_list arg);
+int print_r(va_list arg);
+int print_S(va_list arg);
+int print_p(va_list arg);
+int print_u(va_list arg);
+int print_x(va_list arg);
+int print_X(va_list arg);
+int print_o(va_list arg);
 #endif

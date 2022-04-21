@@ -4,6 +4,7 @@
 /**
  * print_b - Print a number in binay.
  * @arg: Number to be converted to binary and printed.
+ * 
  * Return: Number of bits printed.
  **/
 
