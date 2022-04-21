@@ -1,5 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
  * print_b - Print a number in binay.

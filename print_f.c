@@ -2,8 +2,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 /**
- * print_f - pritns putput according to format.
+ * print_f - prints output according to format.
  * printer - Uses the coresponding function to print.
  * @formati: Type of element to print.
  * Return: Function address.
@@ -38,6 +39,7 @@ return (frm[i].f);
 /**
  * _printf - a function that produces output according to a format
  * @format: character string
+ * 
  * Return: 0 success
  */
 int _printf(const char *format, ...)
@@ -67,7 +69,7 @@ return (p_counter);
 }
 else
 {
-if = printer(format[i + 1]);
+f = printer(format[i + 1]);
 if (f != NULL)
 {
 p_counter += f(arg);

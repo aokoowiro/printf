@@ -1,5 +1,8 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
+
 
 /**
  * print_p - Print an adress.

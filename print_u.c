@@ -1,4 +1,7 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
 /**
  * print_u - prints unsigned integer function
  *@arg: integer to print

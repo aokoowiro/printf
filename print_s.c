@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
-
+#include <stdarg.h>
+#include <stdio.h>
 /**
  * print_s - Print a string.
  * @arg: String address.

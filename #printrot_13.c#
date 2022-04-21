@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdio.h>
 /**
  * print_rot13 - Prints a string in rot13.
  * @arg: String address.

@@ -1,4 +1,8 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 /**
  * print_x - print in hexadecimal function
  *@arg: integer to convert
