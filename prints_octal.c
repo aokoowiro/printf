@@ -1,33 +1,48 @@
 #include "main.h"
 
 /**
- * op_octal - main function
- * @p: The argument pointer.
- *
- * Description: This function prints a octal number.
- *
- * Return: The total number of chacarters.
+ * itoOctal - change int to octal
+ * @list: int to change
+ * Return: string with octal
  */
-int op_octal(va_list p)
+
+char *itoOctal(va_list list)
 {
-	unsigned int oct = va_arg(p, int), buff[1000];
-	int count = 0, i;
+  int j = 0, eights = 1;
+  int i, k;
+  char *s;
 
-	if (oct == 0)
-	{
-		_putchar('0');
-		return (1);
-	}
+  k = va_arg(list, int);
+  i = k;
 
-	while (oct > 0)
-	{
-		buff[count] = oct % 8;
-		oct /= 8;
-		count++;
-	}
-	for (i = count - 1; i >= 0; i--)
-	{
-		_putchar(buff[i] + '0');
-	}
-	return (count);
+  /* malloc up to max int in octal*/
+  s = malloc(sizeof(char) * 12);
+  if (s == NULL)
+    return (NULL);
+
+  if (k < 0)
+    {
+      s[0] = 1 + '0';
+      j++;
+      k *= -1;
+      i *= -1;
+    }
+
+  /* find biggest power of 8 it's divisible by */
+  while (k > 1)
+    {
+      k /= 8;
+      eights *= 8;
+    }
+
+  /* divide down and store octal num */
+  while (eights > 0)
+    {
+      s[j++] = (i / eights + '0');
+      i %= eights;
+      eights /= 8;
+    }
+  s[j] = '\0';
+
+  return (s);
 }

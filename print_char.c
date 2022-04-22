@@ -1,17 +1,24 @@
 #include "main.h"
 /**
- * op_char - main function
- * @p: The argument pointer.
- *
- * Description: This function prints a char.
- *
- * Return: 1.
+ * print_c - returns char as string
+ * @list: char
+ * Return: String verion of char
  */
- int op_char(va_list p)
- {
-	int container = (char)va_arg(p, int);
+char *print_c(va_list list)
+{
+  char *s;
+  char c;
 
-	 _putchar(container);
+  c = va_arg(list, int);
 
-	 return (1);
+  if (c == 0)
+    c = '\0';
+
+  s = malloc(sizeof(char) * 2);
+  if (s == NULL)
+    return (NULL);
+  s[0] = c;
+  s[1] = '\0';
+
+  return (s);
 }

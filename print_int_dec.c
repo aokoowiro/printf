@@ -1,45 +1,71 @@
 #include "main.h"
 
 /**
- * op_numbers - main function
- * @arg: The argument pointer.
- *
- * Description: This function prints a:
- * Integrers.
- * Decimals.
- *
- * Return: 0.
- */
-int op_numbers(va_list arg)
+ * _itos - makes an int a string
+ * @div: multiple of 10
+ * @length: length of number
+ * @n: number to convert to string
+ * Return: string
+ **/
+char *_itos(int div, int length, int n)
 {
-	unsigned int i, p, r;
+  char *str;
+  int i = 0;
 
-	int n = va_arg(arg, int), count = 0;
+  str = malloc(sizeof(char) * length + 2);
+  if (str == NULL)
+    return (NULL);
 
-	if (n < 0)
-	{
-		_putchar('-');
-		count++;
-		i = n * -1;
-	}
-	else
-	{
-		i = n;
-	}
+  if (n < 0) /* account for negative sign */
+    {
+      str[0] = '-';
+      i++;
+    }
+  while (n < 0) /* convert each num to string */
+    {
+      str[i] = ((n / div) * -1 + '0'); /* *-1 to handle min int */
+      n = n % div;
+      div /= 10;
+      i++;
+    }
+  while (div >= 1) /* same, this case for positives */
+    {
+      str[i] = ((n / div) + '0');
+      n = n % div;
+      div /= 10;
+      i++;
+    }
+  str[i] = '\0';
+  return (str);
+}
 
-	p = 1;
-	r = i;
+/**
+ * print_d - gets length to put in _itos
+ * @list: takes arg
+ * Return: integar string
+ **/
+char *print_d(va_list list)
+{
+  int length, div, n, temp;
 
-	while (r > 9)
-	{
-		p *= 10;
-		r /= 10;
-	}
+  n = va_arg(list, int);
+  temp = n;
+  length = 0;
+  div = 1;
 
-	for (; p >= 1; p /= 10)
-	{
-		_putchar(((i / p) % 10) + '0');
-		count++;
-	}
-	return (count);
+  if (n == 0) /* account for 0 having length 1 */
+    {
+      length++;
+      return (_itos(div, length, n));
+    }
+
+  while (temp != 0) /* find multiple of ten to divide */
+    {
+      length += 1;
+      if (length > 1)
+	div *= 10;
+      temp /= 10;
+    }
+
+  return (_itos(div, length, n));
 }

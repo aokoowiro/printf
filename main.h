@@ -1,47 +1,36 @@
-#ifndef _PRINTF_H_
-#define _PRINTF_H_
+#ifndef MAIN_H
+#define MAIN_H
+#include <stdarg.h> /* va_list */
+#include <stdlib.h> /* malloc, free */
+#include <unistd.h> /* write */
 
-/* Libraries */
-#include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
+/* helper functions */
+char* (*get_func(char i))(va_list);
+char *create_buffer(void);
+void write_buffer(char *buffer, int len, va_list list);
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
+
+/* printf functions */
+int _printf(const char *format, ...);
+char *print_s(va_list list);
+char *print_c(va_list list);
+char *print_d(va_list list);
+char *itob(va_list list);
+char *rot13(va_list list);
+char *rev_string(va_list list);
+char *itoOctal(va_list list);
 
 /**
- * struct convert - defines a structure for symbols and functions
- *
- * @sym: The operator.
- * @f: the function associated.
+ * struct types - struct
+ * @id: identifier of type to print (e.g. c means char)
+ * @func: ptr to functions that print according to identifier (e.g. print_c)
  */
-typedef struct base
+
+typedef struct types
 {
-<<<<<<< HEAD
-  char *op;
-  int (*f)(va_list p);
-=======
-	char *op;
-	int (*f)(va_list p);
->>>>>>> a198ade88eb014823f3c67e33d437979d4c14536
-} base_t;
-
-/* General Prototypes */
-int _printf(const char *format, ...);
-int selector(int *i, const char *format, va_list x);
-
-/* Basic Prototypes */
-int op_char(va_list p);
-int op_string(va_list p);
-int op_percent(va_list _ _attribute_ _((unused)) p);
-int op_numbers(va_list arg);
-
-/* Advanced Prototypes */
-int op_unsigned(va_list arg);
-int op_octal(va_list p);
-int op_binary(va_list p);
-int print_rev(va_list p);
-int rot13(va_list p);
-
-/* Auxiliar Prototypes */
-int _putchar(char c);
+  char id;
+  char* (*func)(va_list);
+} print;
 
 #endif
