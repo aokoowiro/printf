@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * op_numbers - main function
  * @arg: The argument pointer.
