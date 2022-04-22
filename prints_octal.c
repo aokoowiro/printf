@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * op_octal - main function
  * @p: The argument pointer.
