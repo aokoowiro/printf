@@ -15,8 +15,13 @@
  */
 typedef struct base
 {
+<<<<<<< HEAD
   char *op;
   int (*f)(va_list p);
+=======
+	char *op;
+	int (*f)(va_list p);
+>>>>>>> a198ade88eb014823f3c67e33d437979d4c14536
 } base_t;
 
 /* General Prototypes */
