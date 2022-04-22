@@ -1,6 +1,8 @@
-#ifndef _MAIN_
-#define _MAIN_
+#ifndef _PRINTF_H_
+#define _PRINTF_H_
 
+/* Libraries */
+#include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -11,20 +13,30 @@
  * @sym: The operator.
  * @f: the function associated.
  */
-struct convert
+typedef struct base
 {
-char *sym;
-int (*f)(va_list);
-};
-typedef struct convert conver_t;
+  char *op;
+  int (*f)(va_list p);
+} base_t;
 
-int parser(const char *format, conver_t f_list[], va_list arg_list);
+/* General Prototypes */
 int _printf(const char *format, ...);
-void v_printf(const char *format, va_list args);
-void print_ch(const char *format, va_list args);
-int _putchar(char);
-int print_char(va_list);
-int print_string(va_list);
-int print_percent(va_list);
+int selector(int *i, const char *format, va_list x);
+
+/* Basic Prototypes */
+int op_char(va_list p);
+int op_string(va_list p);
+int op_percent(va_list _ _attribute_ _((unused)) p);
+int op_numbers(va_list arg);
+
+/* Advanced Prototypes */
+int op_unsigned(va_list arg);
+int op_octal(va_list p);
+int op_binary(va_list p);
+int print_rev(va_list p);
+int rot13(va_list p);
+
+/* Auxiliar Prototypes */
+int _putchar(char c);
 
 #endif
