@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * op_string - main function
  * @p: The argument pointer.
