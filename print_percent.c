@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
 * op_percent - main function
 * @p: The argument pointer.
